@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Editar Paquete</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Detalles del Paquete</h5>
+                    <form action="/packages/edit/{{package._id}}" method="POST">
+                        <div class="mb-3">
+                            <label for="pais" class="form-label">País</label>
+                            <input type="text" id="pais" name="pais" class="form-control" value="{{package.pais}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hotel" class="form-label">Hotel</label>
+                            <input type="text" id="hotel" name="hotel" class="form-control" value="{{package.hotel}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" id="precio" name="precio" class="form-control" value="{{package.precio}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="numeroPersonas" class="form-label">Número de Personas</label>
+                            <input type="number" id="numeroPersonas" name="numeroPersonas" class="form-control" value="{{package.numeroPersonas}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaIda" class="form-label">Fecha de Ida</label>
+                            <input type="date" id="fechaIda" name="fechaIda" class="form-control" value="{{package.fechaIda}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaSalida" class="form-label">Fecha de Salida</label>
+                            <input type="date" id="fechaSalida" name="fechaSalida" class="form-control" value="{{package.fechaSalida}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="actividadRecreativa" class="form-label">Actividad</label>
+                            <input type="text" id="actividadRecreativa" name="actividadRecreativa" class="form-control" value="{{package.actividadRecreativa}}" required>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-primary w-45">Actualizar</button>
+                            <a href="/packages" class="btn btn-secondary w-45">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

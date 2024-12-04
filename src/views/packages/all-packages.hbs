@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <h1 class="text-center">Todos los Paquetes</h1>
+    <div class="row mt-4">
+        {{#if packages.length}}
+            {{#each packages}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.pais}}</h5>
+                            <p class="card-text">
+                                <strong>Hotel:</strong> {{this.hotel}} <br>
+                                <strong>Precio:</strong> ${{this.precio}} <br>
+                                <strong>Personas:</strong> {{this.numeroPersonas}} <br>
+                                <strong>Fecha de Ida:</strong> {{this.fechaIda}} <br>
+                                <strong>Fecha de Salida:</strong> {{this.fechaSalida}} <br>
+                                <strong>Actividad:</strong> {{this.actividadRecreativa}}
+                            </p>
+                            <!-- Mostrar botones según el rol del usuario -->
+                            {{#if (equals ../user.role "admin")}}
+                                <div class="d-flex justify-content-between">
+                                    <a href="/packages/edit/{{this._id}}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="/packages/delete/{{this._id}}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </div>
+                            {{else}}
+                                <form action="/packages/add-to-cart/{{this._id}}" method="POST">
+                                    <button type="submit" class="btn btn-success w-100">Agregar al Carrito</button>
+                                </form>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p class="text-center">No hay paquetes disponibles.</p>
+        {{/if}}
+    </div>
+</div>
+
+
+

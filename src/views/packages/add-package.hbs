@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h1 class="text-center">Agregar Paquete</h1>
+        </div>
+        <div class="card-body">
+            <form action="/packages/add" method="POST">
+                <div class="mb-3">
+                    <label for="pais" class="form-label">País:</label>
+                    <input type="text" class="form-control" name="pais" id="pais" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="hotel" class="form-label">Hotel:</label>
+                    <input type="text" class="form-control" name="hotel" id="hotel" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label>
+                    <input type="number" class="form-control" name="precio" id="precio" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numeroPersonas" class="form-label">Número de Personas:</label>
+                    <input type="number" class="form-control" name="numeroPersonas" id="numeroPersonas" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaIda" class="form-label">Fecha de Ida:</label>
+                    <input type="date" class="form-control" name="fechaIda" id="fechaIda" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaSalida" class="form-label">Fecha de Salida:</label>
+                    <input type="date" class="form-control" name="fechaSalida" id="fechaSalida" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="actividadRecreativa" class="form-label">Actividad Recreativa:</label>
+                    <input type="text" class="form-control" name="actividadRecreativa" id="actividadRecreativa" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Agregar Paquete</button>
+            </form>
+        </div>
+    </div>
+</div>
+

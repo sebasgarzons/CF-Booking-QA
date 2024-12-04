@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary">Carrito de Compras</h1>
+    {{#if cart.length}}
+        <div class="table-responsive shadow-sm">
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>País</th>
+                        <th>Hotel</th>
+                        <th>Precio</th>
+                        <th>Personas</th>
+                        <th>Fecha de Ida</th>
+                        <th>Fecha de Salida</th>
+                        <th>Actividad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    {{#each cart}}
+                        <tr class="text-center align-middle">
+                            <td>{{this.pais}}</td>
+                            <td>{{this.hotel}}</td>
+                            <td>${{this.precio}}</td>
+                            <td>{{this.numeroPersonas}}</td>
+                            <td>{{this.fechaIda}}</td>
+                            <td>{{this.fechaSalida}}</td>
+                            <td>{{this.actividadRecreativa}}</td>
+                            <td>
+                                <form action="/packages/cart/remove/{{this._id}}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-6 offset-md-6">
+                <div class="card shadow-lg border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-primary">Resumen</h5>
+                        <hr>
+                        <p class="card-text text-center">
+                            <strong>Total de paquetes:</strong> <span class="text-success">{{cart.length}}</span><br>
+                            <strong>Total a pagar:</strong> <span class="text-success">${{calcTotal cart}}</span>
+                        </p>
+                        <!-- Botón de pago -->
+                        <button id="pay-button" class="btn btn-primary w-100 mt-3">Proceder al Pago</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="alert alert-info text-center mt-5 shadow">
+            <p class="mb-2">Tu carrito está vacío.</p>
+            <a href="/packages" class="btn btn-secondary">Explora nuestros paquetes</a>
+        </div>
+    {{/if}}
+</div>
+
+<script>
+    document.getElementById('pay-button').addEventListener('click', function () {
+        alert('Paquete pagado');
+    });
+</script>
+
+
+
+
+
