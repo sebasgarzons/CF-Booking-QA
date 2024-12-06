@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking QA CF</title>
+  <link rel="stylesheet" href="./index.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;1000&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <script type="module" src="./index.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <header>
+    <nav id="nav_desktop">
+      <section class="cont_margin_page flex items-center">
+        <div>
+          <button class="f_button open_contact_modal">Reserva&nbsp;&nbsp;></button>
+        </div>
+        <aside></aside>
+        <ul class="flex m-auto gap-4">
+          <li><a>Home +</a></li>
+          <li><a>Page +</a></li>
+          <li><a>Destination +</a></li>
+          <li><a><img /></a></li>
+          <li><a>Blog +</a></li>
+          <li><a>Tours +</a></li>
+          <li><a>Contact +</a></li>
+        </ul>
+        </aside>
+        <div class="flex items-center gap-8">
+          <img src="/img/user.png" class="max-h-[2rem] cursor-pointer profile"
+            onclick="showModal('modalConfirmation')" />
+          <div>
+            Cart
+          </div>
+          <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
+            <nav>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+                  </svg>
+                  My Profile
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                  </svg>
+                  Account Settings
+                </li>
+              </ul>
+              <hr class="divider">
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
+                    <path d="M15 12h-12l3 -3" />
+                    <path d="M6 15l-3 -3" />
+                  </svg>
+                  Sign Out
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </nav>
+    <nav>
+
+    </nav>
+  </header>
+  <main>
+    <section id="carousel_section">
+      <div class="carousel cont_margin_page">
+        <div class="carousel-content">
+          <div class="carousel-item active">
+            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            </div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-text">
+              <h2>Your Adventure Travel<br>Expert In Paris.</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            </div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-text">
+              <h2>Discover Hidden Gems<br>In The City of Light.</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            </div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-text">
+              <h2>Experience Paris<br>Like Never Before.</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-prev" aria-label="Previous slide">&lt;</button>
+        <button class="carousel-next" aria-label="Next slide">&gt;</button>
+        <button class="carousel-play-pause" aria-label="Play/Pause">
+          <span class="play">&#9658;</span>
+          <span class="pause">&#10074;&#10074;</span>
+        </button>
+      </div>
+    </section>
+    <section class="separator_section">
+      <aside id="filter" class="cont_margin_page">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center box_filter">
+            <img src="/img/location-add.png" />
+            <p>Where to?</p>
+          </div>
+
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center box_filter">
+            <img src="/img/calendar-edit.png" />
+            <p>Month</p>
+          </div>
+          <img src="/img/arrow-down.png" />
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center box_filter ">
+            <img src="/img/travelling_1.png" />
+            <p>Travel Type</p>
+          </div>
+          <img src="/img/arrow-down.png" />
+        </div>
+        <button class="f_button h-full">FIND NOW</button>
+      </aside>
+    </section>
+    <section class="cont_margin_page" id="side_to_side_home">
+      <div>
+        <figure>
+          <div>
+            <img />
+          </div>
+        </figure>
+        <div class="flex flex-col gap-2">
+          <h2 class="title">About Us</h2>
+          <h3 class="title">We Are Best Tour & Travel Agency In The World</h3>
+          <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur similique id consequuntur
+            repellendus
+            magnam? Quia nulla autem maiores maxime obcaecati doloremque rerum odit, vel suscipit excepturi deleniti quo
+            nobis voluptatum!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur similique id
+            consequuntur repellendus
+            magnam? Quia nulla autem maiores maxime obcaecati doloremque rerum odit, vel suscipit excepturi deleniti quo
+            nobis voluptatum!</p>
+          <button class="f_button uppercase mt-8">More About</button>
+        </div>
+      </div>
+    </section>
+    <section class="separator_section">
+      <aside class="cont_margin_page">
+        <div class="carousel-container-drag">
+          <div class="carousel-track-drag">
+            <div class="carousel-item-drag">
+              <img src="/placeholder.svg?height=200&width=200">
+              <div class="location_details">
+                <h3>Kathmandu Nepal</h3>
+                <p>04 Tours Place</p>
+              </div>
+            </div>
+            <div class="carousel-item-drag">
+              <img src="/placeholder.svg?height=200&width=200">
+              <div class="location_details">
+                <h3>Tours in Ethiopia!</h3>
+                <p>12 Tours Place</p>
+              </div>
+            </div>
+            <div class="carousel-item-drag">
+              <img src="/placeholder.svg?height=200&width=200">
+              <div class="location_details">
+                <h3>The Colosseum, Rome</h3>
+                <p>05 Tours Place</p>
+              </div>
+            </div>
+            <div class="carousel-item-drag">
+              <img src="/placeholder.svg?height=200&width=200">
+              <div class="location_details">
+                <h3>KualaLumpur Malaysia</h3>
+                <p>10 Tours Place</p>
+              </div>
+            </div>
+            <div class="carousel-item-drag">
+              <img src="/placeholder.svg?height=200&width=200">
+              <div class="location_details">
+                <h3>Egypt Pyramid</h3>
+                <p>04 Tours Place</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+    <section class="separator_section">
+      <aside class="cont_margin_page">
+        <div class="text-center">
+          <h2 class="title prim_color">Popular Destination</h2>
+          <h3 class="title">Find Your Desire Destination</h3>
+        </div>
+        <div class="justify-center flex items-center">
+          <div class="buttons_carrousel_search flex items-center gap-8">
+            <button class="s_button gap-2">
+              <img src="/img/search_carousel_1.png" />
+              <p>Cruises Tour</p>
+            </button>
+            <button class="s_button gap-2">
+              <img src="/img/search_carousel_2.png" />
+              <p>Advencher Tour</p>
+            </button>
+            <button class="s_button gap-2">
+              <img src="/img/search_carousel_3.png" />
+              <p>Wedding Tour</p>
+            </button>
+          </div>
+        </div>
+        <div id="carousel_search">
+          <div class="carousel-dots-container">
+            <div class="carousel-dots">
+              <div class="carousel-dots-slide">
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Tokio Japan</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Riviera Maya</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Colombia Xyz</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Abu Dhabi</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-dots-slide">
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Tokio Japan</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Riviera Maya</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Colombia Xyz</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Abu Dhabi</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-dots-slide">
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Tokio Japan</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Riviera Maya</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Colombia Xyz</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+                <div class="carousel-dots-item">
+                  <div class="relative">
+                    <img src="/placeholder.svg?height=600&width=1200" />
+                  </div>
+                  <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                      <h4>Abu Dhabi</h4>
+                      <h5>$200<span>/$480</span></h5>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
+                      voluptatibus fugiat sunt repellendus</p>
+                    <button class="s_button">Explorer Now &mdash;></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots-indicators"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <section>
+      <aside class="cont_margin_page">
+        <div class="text-center">
+          <h2 class="title prim_color">Explore Our Tours</h2>
+          <h3 class="title">Top Attractions Destinations</h3>
+        </div>
+        <div class="sm:grid-cols-5 grid-cols-1 grid" id="attraction-destinations">
+          <div>
+            <div class="cont_img_map">
+              <img src="/img/attraction_destinations_1.png" />
+            </div>
+            <div class="details_map">
+              <h6>Beauty of France</h6>
+              <p>10 Tours Place</p>
+            </div>
+          </div>
+          <div>
+            <div class="cont_img_map">
+              <img src="/img/attraction_destinations_2.png" />
+            </div>
+            <div class="details_map">
+              <h6>London England</h6>
+              <p>08 Tours Place</p>
+            </div>
+          </div>
+          <div>
+            <div class="cont_img_map">
+              <img src="/img/attraction_destinations_3.png" />
+            </div>
+            <div class="details_map">
+              <h6>Tokyo, Japan</h6>
+              <p>12 Tours Place</p>
+            </div>
+          </div>
+          <div>
+            <div class="cont_img_map">
+              <img src="/img/attraction_destinations_4.png" />
+            </div>
+            <div class="details_map">
+              <h6>Kathmandu, Nepal</h6>
+              <p>12 Tours Place</p>
+            </div>
+          </div>
+          <div>
+            <div class="cont_img_map">
+              <img src="/img/attraction_destinations_1.png" />
+            </div>
+            <div class="details_map">
+              <h6>New York, USA</h6>
+              <p>6 Tours Place</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <section class="separator_section">
+      <aside class="cont_margin_page">
+        <div class="text-center">
+          <h2 class="title prim_color">Testimonials</h2>
+          <h3 class="title">What Our Clients Say</h3>
+        </div>
+        <div id="carousel_testimonials">
+          <div class="carousel-testimonials-container">
+            <div class="carousel-testimonials">
+              <div class="carousel-testimonials-slide">
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Kathryn Murphy</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Cameron Williamson</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Courtney Henry</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-testimonials-slide">
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Kathryn Murphy</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Cameron Williamson</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+                <div class="carousel-testimonials-item">
+                  <div>
+                    <img src="/img/stars.png" class="max-h-[1rem]" />
+                    <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
+                      fabulous view etiam rhoncus maecenas”</p>
+                    <h6>Courtney Henry</h6>
+                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-testimonials-indicators"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <section class="separator_section">
+      <aside class="cont_margin_page">
+        <div class="text-center">
+          <h2 class="title prim_color">Blog and News</h2>
+          <h3 class="title">Find Your Desire Destination</h3>
+        </div>
+        <div class="sm:grid-cols-4 grid-cols-1 grid gap-8" id="gallery_destination">
+          <div>
+            <div class="relative overflow-hidden">
+              <div class="tag_date">
+                February 8, 2022
+              </div>
+              <img />
+            </div>
+            <div class="gallery_destination_details">
+              <h6>&mdash;&mdash; City Travel, <span>Vacation</span></h6>
+              <p>A True Horseman´s Tale Living For A Year on a Fresh.</p>
+            </div>
+          </div>
+          <div>
+            <div class="relative overflow-hidden">
+              <div class="tag_date">
+                February 8, 2022
+              </div>
+              <img />
+            </div>
+            <div class="gallery_destination_details">
+              <h6>&mdash;&mdash; City Travel, <span>Hiking</span></h6>
+              <p>Benefit from a 15% discount mak your reservations.</p>
+            </div>
+          </div>
+          <div>
+            <div class="relative overflow-hidden">
+              <div class="tag_date">
+                February 8, 2022
+              </div>
+              <img />
+            </div>
+            <div class="gallery_destination_details">
+              <h6>&mdash;&mdash; City Travel, <span>Hiking, Tour</span></h6>
+              <p>Living For a Year on a Count Ryside Farm.</p>
+            </div>
+          </div>
+          <div>
+            <div class="relative overflow-hidden">
+              <div class="tag_date">
+                February 8, 2022
+              </div>
+              <img />
+            </div>
+            <div class="gallery_destination_details">
+              <h6>&mdash;&mdash; City Travel, <span>Camping, Travels</span></h6>
+              <p>A Worlwide Tale - Living Abroad in a Van Traveling.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <section class="separator_section">
+      <aside class="cont_margin_page max-w-[1200px]">
+        <div id="gallery_instagram" class="grid sm:grid-cols-5 grid-cols-2 gap-6">
+          <div>
+            <img src="" alt="" />
+          </div>
+          <div>
+            <img src="" alt="" />
+          </div>
+          <div>
+            <img src="" alt="" />
+          </div>
+          <div>
+            <img src="" alt="" />
+          </div>
+          <div>
+            <img src="" alt="" />
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <footer>
+    <aside class="cont_margin_page grid grid-cols-1 sm:grid-cols-[20%_20%_20%_25%_15%]" id="footer_top">
+      <div>
+        <h2>Destinations</h2>
+        <ul>
+          <li>Grand Switzerland</li>
+          <li>Beauty of Paris</li>
+          <li>United States</li>
+          <li>Wiesbaden Sea</li>
+          <li>Egypt</li>
+          <li>Kualalumpur Malaysia</li>
+          <li>New York</li>
+          <li>Bangkok Thailand</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Get to Know Us</h2>
+        <ul>
+          <li>About Company</li>
+          <li>Call to Kindness</li>
+          <li>Clean Beauty</li>
+          <li>Become Partner</li>
+          <li>Help & Support</li>
+          <li>Blog</li>
+          <li>Online Query</li>
+          <li>FAQ´s</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Policies</h2>
+        <ul>
+          <li>Shipping Policy</li>
+          <li>Refund & Cancellations</li>
+          <li>ESG Policy</li>
+          <li>Payments</li>
+          <li>Privacy Policy</li>
+          <li>Terms and Conditions</li>
+        </ul>
+      </div>
+      <div class="max-w-[initial]">
+        <h2>Business Inquiry</h2>
+        <a class="flex items-center gap-4">
+          <img src="/img/location.png" alt="" class="max-h-[1rem]" />
+          4517 Washington Ave #5, Roand #2 Manc hester, Kentucky 39495
+        </a>
+        <h2 class="mt-8">Newsletter</h2>
+        <div class="subscribe_newsletter">
+          <div class="box">
+            <input class="search" placeholder="Email" spellcheck="false" type="text" placeholder=""
+              onfocus="this.setAttribute('placeholder', 'Email address')" onblur="this.setAttribute('placeholder', '')">
+          </div>
+          <button class="f_button">Subscribe</button>
+        </div>
+      </div>
+      <div class="justify-self-end">
+        <h2>Customer Support</h2>
+        <a class="flex items-center gap-4">
+          <img src="/img/mail_white.png" />
+          info@example.com
+        </a>
+        <a class="flex items-center gap-4">
+          <img src="/img/phone.png" />
+          +88 0176 1111 456
+        </a>
+        <div id="social_footer">
+          <h3>Social</h3>
+          <div class="flex items-center gap-4">
+            <a>
+              <img src="/img/facebook.png" alt="" />
+            </a>
+            <a>
+              <img src="/img/youtube.png" alt="" />
+            </a>
+            <a>
+              <img src="/img/instagram.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <hr style="background-color: #ccc;">
+    <aside class="cont_margin_page flex items center justify-between pt-2">
+      <div class="flex items-center gap-4">
+        &copy; 2021, AVNI. Powered by Shopify
+      </div>
+      <div class="flex items-center gap-4">
+        We Accept: <img src="/img/credit_cards.png" />
+      </div>
+    </aside>
+  </footer>
+
+  <!-- Contact modal -->
+  <div id="modal_reservation"
+    class="modals_cont_bckgrnd z-50 justify-center items-center w-full h-[100%] max-h-full fixed animate__animated animate__zoomIn animate__faster">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+      <div class="relative rounded-lg shadow modal_window">
+        <div class="flex items-start justify-between rounded-t relative">
+          <button type="button" id="close_modal_reservation"
+            class="close_modal text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+          </button>
+        </div>
+        <div class="text-center justify-center flex flex-col">
+          <h2 class="text-3xl font-bold prim_color italic">Thanks!</h2>
+          <h3>Your reservation has been made!</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
