@@ -38,6 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
     })
 
+    const button = document.getElementById('user-navbar');
+    const closeButton = document.querySelector('.close-button');
+    const navigationMenu = document.querySelector('.navigation_menu_mobile');
+
+    button.addEventListener('click', () => {
+        navigationMenu.classList.remove('none');
+        navigationMenu.classList.remove('hide');
+    });
+
+    closeButton.addEventListener('click', () => {
+        navigationMenu.classList.add('hide');
+    });
+
     const carousel = document.querySelector('.carousel');
     const content = carousel.querySelector('.carousel-content');
     const items = carousel.querySelectorAll('.carousel-item');
@@ -198,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }, 5000);
 
     const profile = document.querySelector('.profile');
-    const dropdown = document.querySelector('.dropdown__wrapper');
+    const dropdown = document.querySelector('.dropdown_wrapper_user');
 
     profile.addEventListener('click', () => {
         dropdown.classList.remove('none');
@@ -212,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!isClickInsideDropdown && !isProfileClicked) {
             dropdown.classList.add('hide');
-            dropdown.classList.add('dropdown__wrapper--fade-in');
+            dropdown.classList.add('dropdown_wrapper_user--fade-in');
         }
     });
 });

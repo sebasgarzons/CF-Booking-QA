@@ -27,12 +27,11 @@
         <div>
           <button class="f_button open_contact_modal">Reserva&nbsp;&nbsp;></button>
         </div>
-        <aside></aside>
-        <ul class="flex m-auto gap-4">
+        <ul class="flex m-auto gap-4 lg:gap-8 items-center">
           <li><a>Home +</a></li>
           <li><a>Page +</a></li>
           <li><a>Destination +</a></li>
-          <li><a><img /></a></li>
+          <li><a><img src="/img/logo-web.png" class="max-h-[2.5rem]" /></a></li>
           <li><a>Blog +</a></li>
           <li><a>Tours +</a></li>
           <li><a>Contact +</a></li>
@@ -41,10 +40,11 @@
         <div class="flex items-center gap-8">
           <img src="/img/user.png" class="max-h-[2rem] cursor-pointer profile"
             onclick="showModal('modalConfirmation')" />
-          <div>
-            Cart
+          <div class="flex items-center gap-2">
+            <img src="/img/cart-icon.png" />
+            Cart (01)
           </div>
-          <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none">
+          <div class="dropdown_wrapper_user hide dropdown_wrapper_user--fade-in none">
             <nav>
               <ul>
                 <li>
@@ -89,25 +89,115 @@
         </div>
       </section>
     </nav>
-    <nav>
-
+    <nav id="nav_mobile" class="mobile_nav_wrapper">
+      <div class="logo_wrapper">
+        <a title="Logo" class="logo">
+          <img src="/img/logo-web.png" />
+        </a>
+      </div>
+      <div class="action-buttons">
+        <img id="user-navbar" class="user-profile hamburguer-profile-nav" src="/img/hamburguer-icon.png" alt="Profile">
+      </div>
     </nav>
+    <div class="navigation_menu_mobile none">
+      <div class="avatar-wrapper">
+        <img class="user-profile" src="/img/user-profile.webp" alt="Profile">
+        <div class="avatar-name-wrapper">
+          <div class="avatar-name-alias">#111111</div>
+          <div class="avatar-name">Mary Katty - Katty Mary</div>
+        </div>
+        <div class="close-button">
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-x">
+            <path
+              d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z">
+            </path>
+          </svg>
+        </div>
+      </div>
+      <ul class="navigation_menu_mobile_items">
+        <li class="separator">
+          <hr>
+        </li>
+        <li>
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-person">
+            <path
+              d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z">
+            </path>
+          </svg>
+          Your Profile
+        </li>
+        <li>
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-repo">
+            <path
+              d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z">
+            </path>
+          </svg>
+          Your bookings
+        </li>
+        <li>
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-organization">
+            <path
+              d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75Zm4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75ZM7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75ZM7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5Z">
+            </path>
+          </svg>
+          Our Hotels
+        </li>
+        <li>
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-globe">
+            <path
+              d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM5.78 8.75a9.64 9.64 0 0 0 1.363 4.177c.255.426.542.832.857 1.215.245-.296.551-.705.857-1.215A9.64 9.64 0 0 0 10.22 8.75Zm4.44-1.5a9.64 9.64 0 0 0-1.363-4.177c-.307-.51-.612-.919-.857-1.215a9.927 9.927 0 0 0-.857 1.215A9.64 9.64 0 0 0 5.78 7.25Zm-5.944 1.5H1.543a6.507 6.507 0 0 0 4.666 5.5c-.123-.181-.24-.365-.352-.552-.715-1.192-1.437-2.874-1.581-4.948Zm-2.733-1.5h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.507 6.507 0 0 0-4.666 5.5Zm10.181 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.507 6.507 0 0 0 4.666-5.5Zm2.733-1.5a6.507 6.507 0 0 0-4.666-5.5c.123.181.24.365.353.552.714 1.192 1.436 2.874 1.58 4.948Z">
+            </path>
+          </svg>
+          Book a Tour
+        </li>
+        <li class="separator">
+          <hr>
+        </li>
+        <li>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+              stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Cart
+        </li>
+        <li class="separator">
+          <hr>
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
+            <path d="M15 12h-12l3 -3" />
+            <path d="M6 15l-3 -3" />
+          </svg>
+          Sign Out
+        </li>
+      </ul>
+    </div>
   </header>
   <main>
     <section id="carousel_section">
-      <div class="carousel cont_margin_page">
+      <div class="carousel cont_margin_page cont_margin_page_mobile">
         <div class="carousel-content">
           <div class="carousel-item active">
-            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            <div class="carousel-background" style="background-image: url('../src/assets/img/banner01.jpg')">
             </div>
             <div class="carousel-overlay"></div>
             <div class="carousel-text">
-              <h2>Your Adventure Travel<br>Expert In Paris.</h2>
+              <h2>Your Adventure<br>Expert In Paris.</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
             </div>
           </div>
           <div class="carousel-item">
-            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            <div class="carousel-background" style="background-image: url('../src/assets/img/banner02.jpg')">
             </div>
             <div class="carousel-overlay"></div>
             <div class="carousel-text">
@@ -116,11 +206,11 @@
             </div>
           </div>
           <div class="carousel-item">
-            <div class="carousel-background" style="background-image: url('/placeholder.svg?height=600&width=1200')">
+            <div class="carousel-background" style="background-image: url('../src/assets/img/banner03.jpg')">
             </div>
             <div class="carousel-overlay"></div>
             <div class="carousel-text">
-              <h2>Experience Paris<br>Like Never Before.</h2>
+              <h2>Experience Las Vegas<br>Like Never Before.</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
             </div>
           </div>
@@ -163,7 +253,7 @@
       <div>
         <figure>
           <div>
-            <img />
+            <img src="./assets/img/about-location.jpg" />
           </div>
         </figure>
         <div class="flex flex-col gap-2">
@@ -185,35 +275,45 @@
         <div class="carousel-container-drag">
           <div class="carousel-track-drag">
             <div class="carousel-item-drag">
-              <img src="/placeholder.svg?height=200&width=200">
+              <div>
+                <img src="./assets/img/kathmandu_nepal.jpeg">
+              </div>
               <div class="location_details">
                 <h3>Kathmandu Nepal</h3>
                 <p>04 Tours Place</p>
               </div>
             </div>
             <div class="carousel-item-drag">
-              <img src="/placeholder.svg?height=200&width=200">
+              <div>
+                <img src="./assets/img/ethiopia.jpg">
+              </div>
               <div class="location_details">
                 <h3>Tours in Ethiopia!</h3>
                 <p>12 Tours Place</p>
               </div>
             </div>
             <div class="carousel-item-drag">
-              <img src="/placeholder.svg?height=200&width=200">
+              <div>
+                <img src="./assets/img/the_colosseum_rome.jpeg">
+              </div>
               <div class="location_details">
                 <h3>The Colosseum, Rome</h3>
                 <p>05 Tours Place</p>
               </div>
             </div>
             <div class="carousel-item-drag">
-              <img src="/placeholder.svg?height=200&width=200">
+              <div>
+                <img src="./assets/img/kuala_lumpur_malasya.jpg">
+              </div>
               <div class="location_details">
                 <h3>KualaLumpur Malaysia</h3>
                 <p>10 Tours Place</p>
               </div>
             </div>
             <div class="carousel-item-drag">
-              <img src="/placeholder.svg?height=200&width=200">
+              <div>
+                <img src="./assets/img/egypt_pyramid.jpg">
+              </div>
               <div class="location_details">
                 <h3>Egypt Pyramid</h3>
                 <p>04 Tours Place</p>
@@ -222,7 +322,6 @@
           </div>
         </div>
       </aside>
-
     </section>
     <section class="separator_section">
       <aside class="cont_margin_page">
@@ -252,7 +351,7 @@
               <div class="carousel-dots-slide">
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/tokyo_japan.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
@@ -266,7 +365,7 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/rivera_maya.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
@@ -280,7 +379,7 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/colombia.png" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
@@ -294,7 +393,7 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/abu_dhabi.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
@@ -310,11 +409,11 @@
               <div class="carousel-dots-slide">
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/buenos_aires.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Tokio Japan</h4>
+                      <h4>Buenos Aires</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -324,11 +423,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/estambul.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Riviera Maya</h4>
+                      <h4>Estambul</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -338,11 +437,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/praga.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Colombia Xyz</h4>
+                      <h4>Praga</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -352,11 +451,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/seul.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Abu Dhabi</h4>
+                      <h4>Seul</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -368,11 +467,11 @@
               <div class="carousel-dots-slide">
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/berlin.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Tokio Japan</h4>
+                      <h4>Berlin</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -382,11 +481,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/edimburgo.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Riviera Maya</h4>
+                      <h4>Edimburgo</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -396,11 +495,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/hanoi.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Colombia Xyz</h4>
+                      <h4>Hanoi</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -410,11 +509,11 @@
                 </div>
                 <div class="carousel-dots-item">
                   <div class="relative">
-                    <img src="/placeholder.svg?height=600&width=1200" />
+                    <img src="./assets/img/londres.jpg" />
                   </div>
                   <div class="description-dots">
                     <div class="flex items-center justify-between">
-                      <h4>Abu Dhabi</h4>
+                      <h4>Londres</h4>
                       <h5>$200<span>/$480</span></h5>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fugit corrupti molestiae
@@ -435,7 +534,7 @@
           <h2 class="title prim_color">Explore Our Tours</h2>
           <h3 class="title">Top Attractions Destinations</h3>
         </div>
-        <div class="sm:grid-cols-5 grid-cols-1 grid" id="attraction-destinations">
+        <div class="sm:grid-cols-2 md:grid-cols-5 grid-cols-1 grid" id="attraction-destinations">
           <div>
             <div class="cont_img_map">
               <img src="/img/attraction_destinations_1.png" />
@@ -500,7 +599,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Kathryn Murphy</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
                 <div class="carousel-testimonials-item">
@@ -509,7 +608,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Cameron Williamson</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
                 <div class="carousel-testimonials-item">
@@ -518,7 +617,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Courtney Henry</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
               </div>
@@ -529,7 +628,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Kathryn Murphy</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
                 <div class="carousel-testimonials-item">
@@ -538,7 +637,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Cameron Williamson</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
                 <div class="carousel-testimonials-item">
@@ -547,7 +646,7 @@
                     <p>“This place is great! I had a very pleasant stay here. Great stuff and beautiful suites with a
                       fabulous view etiam rhoncus maecenas”</p>
                     <h6>Courtney Henry</h6>
-                    <img src="/img/testimonial_user.png" class="max-h-[2.5rem]" />
+                    <img src="/img/user-profile.webp" class="max-h-[2.5rem]" />
                   </div>
                 </div>
               </div>
@@ -563,13 +662,13 @@
           <h2 class="title prim_color">Blog and News</h2>
           <h3 class="title">Find Your Desire Destination</h3>
         </div>
-        <div class="sm:grid-cols-4 grid-cols-1 grid gap-8" id="gallery_destination">
+        <div class="md:grid-cols-4 grid-cols-1 grid gap-8" id="gallery_destination">
           <div>
             <div class="relative overflow-hidden">
               <div class="tag_date">
                 February 8, 2022
               </div>
-              <img />
+              <img src="./assets/img/brisbane.jpg" />
             </div>
             <div class="gallery_destination_details">
               <h6>&mdash;&mdash; City Travel, <span>Vacation</span></h6>
@@ -581,7 +680,7 @@
               <div class="tag_date">
                 February 8, 2022
               </div>
-              <img />
+              <img src="./assets/img/machu_pichu.jpg" />
             </div>
             <div class="gallery_destination_details">
               <h6>&mdash;&mdash; City Travel, <span>Hiking</span></h6>
@@ -593,7 +692,7 @@
               <div class="tag_date">
                 February 8, 2022
               </div>
-              <img />
+              <img src="./assets/img/perth.jpg" />
             </div>
             <div class="gallery_destination_details">
               <h6>&mdash;&mdash; City Travel, <span>Hiking, Tour</span></h6>
@@ -605,7 +704,7 @@
               <div class="tag_date">
                 February 8, 2022
               </div>
-              <img />
+              <img src="./assets/img/quebec.jpg" />
             </div>
             <div class="gallery_destination_details">
               <h6>&mdash;&mdash; City Travel, <span>Camping, Travels</span></h6>
@@ -617,28 +716,28 @@
     </section>
     <section class="separator_section">
       <aside class="cont_margin_page max-w-[1200px]">
-        <div id="gallery_instagram" class="grid sm:grid-cols-5 grid-cols-2 gap-6">
+        <div id="gallery_instagram" class="grid md:grid-cols-5 grid-cols-2 gap-6">
           <div>
-            <img src="" alt="" />
+            <img src="./assets/img/islas_galapagos.jpg" alt="" />
           </div>
           <div>
-            <img src="" alt="" />
+            <img src="./assets/img/beijing.jpg" alt="" />
           </div>
           <div>
-            <img src="" alt="" />
+            <img src="./assets/img/dubai.jpg" alt="" />
           </div>
           <div>
-            <img src="" alt="" />
+            <img src="./assets/img/kilimanjaro.jpg" alt="" />
           </div>
           <div>
-            <img src="" alt="" />
+            <img src="./assets/img/petra.jpg" alt="" />
           </div>
         </div>
       </aside>
     </section>
   </main>
   <footer>
-    <aside class="cont_margin_page grid grid-cols-1 sm:grid-cols-[20%_20%_20%_25%_15%]" id="footer_top">
+    <aside class="cont_margin_page grid grid-cols-1 md:grid-cols-[20%_20%_20%_25%_15%]" id="footer_top">
       <div>
         <h2>Destinations</h2>
         <ul>
@@ -691,7 +790,7 @@
           <button class="f_button">Subscribe</button>
         </div>
       </div>
-      <div class="justify-self-end">
+      <div class="md:justify-self-end">
         <h2>Customer Support</h2>
         <a class="flex items-center gap-4">
           <img src="/img/mail_white.png" />
@@ -718,7 +817,7 @@
       </div>
     </aside>
     <hr style="background-color: #ccc;">
-    <aside class="cont_margin_page flex items center justify-between pt-2">
+    <aside class="cont_margin_page flex sm:flex-row flex-col items center justify-between pt-2">
       <div class="flex items-center gap-4">
         &copy; 2021, AVNI. Powered by Shopify
       </div>
