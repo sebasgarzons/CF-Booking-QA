@@ -1,0 +1,8 @@
+node_modules
+.eslintrc.json        
+.stylelintrc
+.vscode
+jsconfig.json
+package-lock.json
+package.json
+vite.config.js
