@@ -462,8 +462,8 @@ nav > ul > li:hover > svg {
 }
 
 .info-item i {
-    vertical-align: middle; /* Alinea ÃƒÂ­cono con el texto */
-    font-size: 1.5rem; /* TamaÃƒÂ±o del ÃƒÂ­cono */
+    vertical-align: middle; /* Alinea ÃƒÆ’Ã‚Â­cono con el texto */
+    font-size: 1.5rem; /* TamaÃƒÆ’Ã‚Â±o del ÃƒÆ’Ã‚Â­cono */
     margin-right: 5px;
     color: var(--icon);
   }
@@ -770,7 +770,9 @@ nav > ul > li:hover > svg {
     font-weight: 600;
     /* text-align: right; */
     font-size: 2.1rem;
-    /* padding-top: 1rem; */
+    /* margin: 0; */
+    letter-spacing: 2px;
+    padding-top: 0;
 }
 
 .carousel-dots-item div.description-dots h5 span{
@@ -781,9 +783,10 @@ nav > ul > li:hover > svg {
 
 .carousel-dots-item div.description-dots p{
     color: black;
-    text-align: justify;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    /* text-align: justify; */
+    /* font-size: 0.9rem; */
+    /* line-height: 1.5; */
+    /* margin-top: 0px; */
 }
 
 .carousel-dots-item div.description-dots button{
