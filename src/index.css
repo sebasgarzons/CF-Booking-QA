@@ -29,6 +29,7 @@ font-family: 'Roboto', sans-serif; */
     --input-bg: #F1F2F3;
     --background-lighter: #F8F9FA;
     --error: #e5484d;
+    --icon: #664617;
 }
 
 *{
@@ -41,7 +42,7 @@ font-family: 'Roboto', sans-serif; */
 }
 
 html{
-    cursor: url('../public/img/mouse-pointer.png'), auto;
+    cursor: url('/@fs/Users/maryanfer/Programming/CF-Booking-QA/public/img/mouse-pointer.png'), auto;
 }
 
 body{
@@ -455,6 +456,28 @@ nav > ul > li:hover > svg {
     height: 100%;
 }
 
+.info-list {
+    text-align: left;
+    color: black;
+}
+
+.info-item i {
+    vertical-align: middle; /* Alinea ÃƒÆ’Ã‚Â­cono con el texto */
+    font-size: 1.5rem; /* TamaÃƒÆ’Ã‚Â±o del ÃƒÆ’Ã‚Â­cono */
+    margin-right: 5px;
+    color: var(--icon);
+  }
+  
+
+
+.item-price {
+   display: flex;
+   align-content: flex-end;
+   flex-direction: column-reverse;
+   align-items: flex-end;
+   /* justify-content: space-between; */
+   /* margin-top: -1rem; */
+}
 .carousel-background {
     position: absolute;
     top: 0;
@@ -552,6 +575,7 @@ nav > ul > li:hover > svg {
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr auto;
     gap: 1rem;
+    padding-top: 1rem;
 }
 
 #filter > div{
@@ -730,17 +754,25 @@ nav > ul > li:hover > svg {
     padding: 1rem 0.5rem;
     flex-direction: column;
     display: flex;
+    /* gap: 1rem; */
 }
 
 .carousel-dots-item div.description-dots h4{
     color: black;
     font-weight: 700;
     font-size: 1.1rem;
+    text-align: left;
+    padding-bottom: 1rem;
 }
 
 .carousel-dots-item div.description-dots h5{
     color: var(--primary);
     font-weight: 600;
+    /* text-align: right; */
+    font-size: 2.1rem;
+    /* margin: 0; */
+    letter-spacing: 2px;
+    padding-top: 0;
 }
 
 .carousel-dots-item div.description-dots h5 span{
@@ -751,9 +783,10 @@ nav > ul > li:hover > svg {
 
 .carousel-dots-item div.description-dots p{
     color: black;
-    text-align: justify;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    /* text-align: justify; */
+    /* font-size: 0.9rem; */
+    /* line-height: 1.5; */
+    /* margin-top: 0px; */
 }
 
 .carousel-dots-item div.description-dots button{
@@ -985,7 +1018,7 @@ footer .search {
     background-size: 2.5rem;
     background-position: 45% 50%;
     padding-left: 32px;
-    background-image: url('../public/img/mail.png'); /* URL de la imagen */
+    background-image: url('/@fs/Users/maryanfer/Programming/CF-Booking-QA/public/img/mail.png'); /* URL de la imagen */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 24px;
@@ -1024,7 +1057,7 @@ footer .subscribe_newsletter button{
 }
 
 footer #social_footer{
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 }
 
 footer #social_footer h3{
