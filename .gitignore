@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 package-lock.json
+!vite.config.mjs
 
 # Editor directories and files
 .vscode/*
