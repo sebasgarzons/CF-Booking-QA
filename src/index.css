@@ -29,6 +29,7 @@ font-family: 'Roboto', sans-serif; */
     --input-bg: #F1F2F3;
     --background-lighter: #F8F9FA;
     --error: #e5484d;
+    --icon: #664617;
 }
 
 *{
@@ -461,9 +462,10 @@ nav > ul > li:hover > svg {
 }
 
 .info-item i {
-    vertical-align: middle; /* Alinea Ã­cono con el texto */
-    font-size: 1.5rem; /* TamaÃ±o del Ã­cono */
+    vertical-align: middle; /* Alinea ÃƒÂ­cono con el texto */
+    font-size: 1.5rem; /* TamaÃƒÂ±o del ÃƒÂ­cono */
     margin-right: 5px;
+    color: var(--icon);
   }
   
 
@@ -474,7 +476,7 @@ nav > ul > li:hover > svg {
    flex-direction: column-reverse;
    align-items: flex-end;
    /* justify-content: space-between; */
-   margin-top: -1rem;
+   /* margin-top: -1rem; */
 }
 .carousel-background {
     position: absolute;
