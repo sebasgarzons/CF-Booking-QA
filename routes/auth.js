@@ -1,55 +1,78 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const path = require("path");
-const cors = require("cors");
-const authRoutes = require("./routes/auth"); // Importar rutas de autenticación
+const express = require('express');
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
 
-const app = express();
-const PORT = 3000;
+const router = express.Router(); // Inicializar el router
 
-// Middlewares
-app.use(cors()); // Habilitar CORS para todas las solicitudes
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+// Ruta de registro
+router.post('/register', async (req, res) => {
+    const { username, email, password, confirmPassword } = req.body;
 
-// Depuración de solicitudes
-app.use((req, res, next) => {
-  console.log(`Solicitud entrante: ${req.method} ${req.url}`);
-  next();
+    if (password !== confirmPassword) {
+        return res.status(400).send('Las contraseñas no coinciden');
+    }
+
+    try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send('El usuario ya existe');
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ username, email, password: hashedPassword });
+        await newUser.save();
+
+        // Responde con un 200 OK, sin redirigir aquí.
+        res.status(200).send(); // Respuesta sin contenido
+    } catch (error) {
+        console.error('Error al registrar usuario:', error);
+        res.status(500).send('Error al registrar usuario');
+    }
 });
 
-// Conexión a MongoDB
-mongoose.connect("mongodb://localhost:27017/cf_booking", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// Ruta de login
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).send('Credenciales inválidas');
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).send('Credenciales inválidas');
+        }
+
+        // Configurar cookies
+        res.cookie('loggedIn', 'true', {
+            httpOnly: false, // Accesible en el frontend
+            maxAge: 24 * 60 * 60 * 1000, // 1 día
+            path: '/'
+        });
+
+        res.cookie('userEmail', email, {
+            httpOnly: false, // Accesible en el frontend
+            maxAge: 24 * 60 * 60 * 1000,
+            path: '/'
+        });
+
+        console.log(`Usuario autenticado: ${email}`);
+        
+        // Cambiado: ahora solo respondemos con un 200 OK
+        res.status(200).send();
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        res.status(500).send('Error al iniciar sesión');
+    }
 });
 
-mongoose.connection.on("error", console.error.bind(console, "Error al conectar con MongoDB:"));
-mongoose.connection.once("open", () => {
-  console.log("Conexión exitosa con MongoDB");
+// Ruta para cerrar sesión
+router.get('/logout', (req, res) => {
+    res.clearCookie('loggedIn', { path: '/' }); // Eliminar cookie de autenticación
+    res.clearCookie('userEmail', { path: '/' }); // Eliminar cookie del correo
+    res.redirect('/login');
 });
 
-// Ruta para servir la página de inicio
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-// Ruta para servir la página de inicio de sesión
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
-
-// Ruta para servir la página de registro
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "register.html"));
-});
-
-// Rutas de autenticación (actualización)
-app.use("/api/auth", authRoutes);
-
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+module.exports = router; // Exportar el router

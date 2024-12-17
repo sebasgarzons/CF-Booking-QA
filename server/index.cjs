@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors"); // Importa CORS
-const authRoutes = require('../routes/auth'); // Importar rutas de autenticación
+const authRoutes = require("../routes/auth"); // Importar rutas de autenticación
 
 const app = express();
 const PORT = 3000;
@@ -46,7 +46,7 @@ app.get("/register", (req, res) => {
 });
 
 // Rutas de autenticación
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 
 // Iniciar servidor
 app.listen(PORT, () => {

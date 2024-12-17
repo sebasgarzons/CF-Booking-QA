@@ -2,9 +2,11 @@
   "name": "test",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "main": "server/index.cjs",
   "scripts": {
-    "dev": "vite",
+    "start": "node server/index.cjs",
+    "dev-backend": "nodemon index.cjs",
+    "dev-frontend": "vite",
     "build": "rm -rf dist && vite build",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
@@ -19,9 +21,13 @@
     "vite": "^5.4.10",
     "vite-tsconfig-paths": "^5.1.4"
   },
-  "keywords": [],
-  "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5"
-  }
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.0"
+  },
+  "keywords": [],
+  "license": "ISC"
 }

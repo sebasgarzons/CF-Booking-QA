@@ -37,7 +37,7 @@
             };
 
             try {
-                const response = await fetch('/register', {
+                const response = await fetch('http://localhost:3000/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
@@ -45,7 +45,7 @@
 
                 if (response.ok) {
                     alert('Registro exitoso. Redirigiendo a la página de inicio de sesión.');
-                    window.location.href = '/login'; // Redirigir al login
+                    window.location.href = 'http://localhost:5173/login';
                 } else {
                     const error = await response.text();
                     alert('Error en el registro: ' + error);
