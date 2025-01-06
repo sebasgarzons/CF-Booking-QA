@@ -1018,7 +1018,7 @@ footer .search {
     background-size: 2.5rem;
     background-position: 45% 50%;
     padding-left: 32px;
-    background-image: url('/@fs/Users/maryanfer/Programming/CF-Booking-QA/public/img/mail.png'); /* URL de la imagen */
+    /* background-image: url('/@fs/Users/maryanfer/Programming/CF-Booking-QA/public/img/mail.png'); URL de la imagen */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 24px;
