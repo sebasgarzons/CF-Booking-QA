@@ -9,7 +9,7 @@ const cors = require("cors"); // Importa CORS
 const authRoutes = require("../routes/auth"); // Importar rutas de autenticación
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors()); // Habilitar CORS para todas las solicitudes
