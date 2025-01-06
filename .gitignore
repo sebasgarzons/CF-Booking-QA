@@ -16,6 +16,8 @@ package-lock.json
 .stylelintrc
 .vscode/
 
+.env
+
 
 # Editor directories and files
 .vscode/*
