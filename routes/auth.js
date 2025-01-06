@@ -1,79 +1,106 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const User = require("../models/user");
 
-const router = express.Router(); // Inicializar el router
+const router = express.Router();
 
-// Ruta de registro
-router.post('/register', async (req, res) => {
-    const { username, email, password, confirmPassword } = req.body;
 
-    if (password !== confirmPassword) {
-        return res.status(400).send('Las contraseñas no coinciden');
-    }
+function isAdmin(req, res, next) {
+  if (req.session && req.session.user && req.session.user.role === "admin") {
+    return next();
+  } else {
+    return res.status(403).send("Acceso denegado. Solo administradores pueden acceder.");
+  }
+}
 
-    try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).send('El usuario ya existe');
-        }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username, email, password: hashedPassword });
-        await newUser.save();
+router.post("/register", async (req, res) => {
+  const { username, email, password, confirmPassword, role } = req.body;
 
-        // Responde con un 200 OK, sin redirigir aquí.
-        res.status(200).send(); // Respuesta sin contenido
-    } catch (error) {
-        console.error('Error al registrar usuario:', error);
-        res.status(500).send('Error al registrar usuario');
-    }
+  if (password !== confirmPassword) {
+    return res.status(400).send("Las contraseñas no coinciden");
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      role: role || "user", 
+    });
+
+    await newUser.save();
+    res.status(201).send("Usuario registrado exitosamente");
+  } catch (err) {
+    console.error("Error al registrar usuario:", err);
+    res.status(500).send("Error al registrar usuario");
+  }
 });
 
-// Ruta de login
+
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(401).send('Credenciales inválidas');
-        }
+  if (!email || !password) {
+    return res.status(400).send("Email y contraseña son requeridos");
+  }
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).send('Credenciales inválidas');
-        }
-
-        // Configurar cookies
-        res.cookie('loggedIn', 'true', {
-            httpOnly: false, // Accesible en el frontend
-            maxAge: 24 * 60 * 60 * 1000, // 1 día
-            path: '/'
-        });
-
-        res.cookie('userEmail', email, {
-            httpOnly: false, // Accesible en el frontend
-            maxAge: 24 * 60 * 60 * 1000,
-            path: '/'
-        });
-
-        console.log(`Usuario autenticado: ${email}`);
-        
-        // Cambiado: ahora solo respondemos con un 200 OK
-        res.status(200).send();
-    } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        res.status(500).send('Error al iniciar sesión');
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado");
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).send("Contraseña incorrecta");
+    }
+
+    
+    console.log("Antes de configurar sesión:", req.session);
+    req.session.user = {
+      id: user._id,
+      username: user.username,
+      role: user.role, 
+    };
+    console.log("Después de configurar sesión:", req.session);
+
+    
+    res.status(200).json({
+      message: "Inicio de sesión exitoso",
+      role: user.role,
+      username: user.username,
+    });
+  } catch (err) {
+    console.error("Error al iniciar sesión:", err);
+    res.status(500).send("Error del servidor");
+  }
 });
 
 
-// Ruta para cerrar sesión
-router.get('/logout', (req, res) => {
-    res.clearCookie('loggedIn', { path: '/' }); // Eliminar cookie de autenticación
-    res.clearCookie('userEmail', { path: '/' }); // Eliminar cookie del correo
-    res.redirect('/login');
+router.get('/auth-status', (req, res) => {
+  if (req.session && req.session.user) {
+    res.status(200).json({ authenticated: true, user: req.session.user });
+  } else {
+    res.status(401).json({ authenticated: false, error: 'No estás autenticado' });
+  }
 });
 
-module.exports = router; // Exportar el router
+
+router.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error al cerrar sesión:", err);
+      return res.status(500).send("Error al cerrar sesión");
+    }
+    res.status(200).send("Sesión cerrada");
+  });
+});
+
+
+router.get("/edit-packages", isAdmin, (req, res) => {
+  res.send("Página de edición de paquetes");
+});
+
+module.exports = router;

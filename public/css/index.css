@@ -174,32 +174,49 @@ p.text{
     align-items: center;
 }
 
-.dropdown_wrapper_user {
-    width: 19rem;
-    top: 3rem;
-    right: 1rem;
-    padding: 1rem;
+.dropdown__wrapper {
     position: absolute;
-    border-radius: 0.75rem;
-    background: var(--secondary);
+    top: 60px; 
+    right: 15px;
+    background-color: var(--secondary, #ffffff); 
+    border: 2px solid var(--primary, #007bff); 
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
+    padding: 1rem;
+    width: 16rem; 
     display: flex;
     flex-direction: column;
-    color: var(--text-inputs);
-    gap: 0.25rem;
-    animation: fadeOutAnimationDetailsUser
-    ease-in-out 0.3s forwards;
-    z-index: 1;
-    border: 2px solid var(--primary);
+    gap: 0.5rem; 
 }
 
-.dropdown_wrapper_user h2 {
-    font-size: 1.15rem;
+.dropdown__wrapper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.dropdown_wrapper_user--fade-in {
-    animation: fadeInAnimationDetailsUser
-    ease-in-out 0.3s forwards;
+.dropdown__wrapper ul li {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ffffff
+    
 }
+
+.dropdown__wrapper ul li:hover {
+    background-color: var(--primary, #007bff); 
+    color: #ffffff; 
+}
+
+.dropdown__wrapper hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 0.5rem 0;
+}
+
+
 
 #nav_desktop .divider {
     width: 100%;
@@ -217,7 +234,6 @@ nav > ul {
 }
 
 nav > ul > li {
-    height: 3rem;
     color: var(--text-inputs-gray);
     cursor: pointer;
     display: flex;

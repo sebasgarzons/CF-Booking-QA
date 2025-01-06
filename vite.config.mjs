@@ -8,15 +8,15 @@ const mode = process.env.NODE_ENV === "production" ? "production" : "development
 const base = mode === "production" && isGitHubPages ? `/${folderName}` : "/";
 
 export default defineConfig({
-  root: "public", // Carpeta raíz configurada en public
+  root: "public", 
   base,
   mode,
   envDir: "../",
-  publicDir: "public", // Usa public para archivos estáticos
+  publicDir: "public", 
   plugins: [tsconfigPaths()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // Alias para src
+      "@": path.resolve(__dirname, "src"), 
     },
   },
   build: {
@@ -26,7 +26,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, "public/index.html"),
         login: path.resolve(__dirname, "public/login.html"),
-        register: path.resolve(__dirname, "public/register.html"), // Agregado
+        register: path.resolve(__dirname, "public/register.html"), 
       },
     },
   },
@@ -34,9 +34,9 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
-    historyApiFallback: true, // Redirige todas las rutas al index.html (SPA)
+    historyApiFallback: true, 
     proxy: {
-      "/api": "http://localhost:3000", // Proxy para el servidor backend Express
+      "/api": "http://localhost:3000", 
     },
   },
 });
