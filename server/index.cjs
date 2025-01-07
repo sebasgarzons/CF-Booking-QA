@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -6,7 +9,7 @@ const session = require("express-session");
 const authRoutes = require("../routes/auth");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(
@@ -36,6 +39,13 @@ app.use((req, res, next) => {
   next();
 });
 
+<<<<<<< HEAD
+=======
+// Conexión a MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Conexión exitosa a MongoDB'))
+  .catch(err => console.error('Error al conectar a MongoDB:', err));
+>>>>>>> main
 
 mongoose
   .connect("mongodb://localhost:27017/agencia", {
