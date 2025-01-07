@@ -24,7 +24,7 @@ app.use(
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/",
     credentials: true,
   })
 );
@@ -39,21 +39,18 @@ app.use((req, res, next) => {
   next();
 });
 
-<<<<<<< HEAD
-=======
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Conexión exitosa a MongoDB'))
   .catch(err => console.error('Error al conectar a MongoDB:', err));
->>>>>>> main
 
-mongoose
-  .connect("mongodb://localhost:27017/agencia", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Conexión exitosa a MongoDB"))
-  .catch((err) => console.error("Error al conectar a MongoDB:", err));
+// mongoose
+//   .connect("mongodb://localhost:27017/agencia", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Conexión exitosa a MongoDB"))
+//   .catch((err) => console.error("Error al conectar a MongoDB:", err));
 
 mongoose.connection.on(
   "error",
