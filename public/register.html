@@ -45,7 +45,7 @@
 
                 if (response.ok) {
                     alert('Registro exitoso. Redirigiendo a la página de inicio de sesión.');
-                    window.location.href = 'http://localhost:5173/login';
+                    window.location.href = 'https://polar-mountain-17270-cc22e4a69974.herokuapp.com/login';
                 } else {
                     const error = await response.text();
                     alert('Error en el registro: ' + error);
