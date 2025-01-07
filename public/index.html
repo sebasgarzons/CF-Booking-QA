@@ -43,26 +43,22 @@
           <a href="/login.html" class="f_button" id="loginButton">Iniciar Sesión</a>
           <div class="flex items-center gap-2">
             <img src="/img/cart-icon.png" />
-            Carrito (01)
+            <a href="/cart">Carro</a>
           </div>
         </div>
 
-        <div class="dropdown__wrapper hide dropdown__wrapper--fade-in" id="optionsBox" style="display: none;">
+        <div class="dropdown__wrapper dropdown__wrapper hide dropdown__wrapper--fade-in" id="optionsBox" style="display: none;">
           <nav>
             <ul>
-              <!-- Visible para todos los usuarios autenticados -->
               <li id="allPackages" style="display: none;">
-                Todos los paquetes
+                <a href="/all-packages">Todos los paquetes</a>
               </li>
-
-              <!-- Visible solo para administradores -->
               <li id="adminOptions" style="display: none;">
-                Añadir paquetes
+                <a href="/edit-packages" id="editPackagesLink">Añadir paquetes</a>
               </li>
             </ul>
             <hr class="divider">
             <ul>
-              <!-- Botón de cerrar sesión -->
               <li id="logoutButton" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -951,6 +947,7 @@
   </div>
 
 
+  <script src="/js/roleHandler.js" defer></script>
 
 </body>
 
