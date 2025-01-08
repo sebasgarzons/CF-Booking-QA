@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const editPackagesLink = document.createElement('a');
             editPackagesLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                fetch('http://localhost:3000/edit-packages', {
+                fetch('https://polar-mountain-17270-cc22e4a69974.herokuapp.com/edit-packages', {
                     method: 'GET',
                     credentials: 'include', // Enviar cookies de sesión
                 })
