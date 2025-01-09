@@ -122,6 +122,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
     carouselDrag.addEventListener('dragstart', (e) => e.preventDefault());
 
+    const carouselDots = document.querySelector('.carousel-dots');
+    const slidesDots = document.querySelectorAll('.carousel-dots-slide');
+    const dotsContainer = document.querySelector('.carousel-dots-indicators');
+    let currentSlide = 0;
+
+    console.log(carouselDots)
+    console.log(slidesDots)
+    console.log(dotsContainer)
+
+    // Create dots
+    slidesDots.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(n) {
+        carouselDots.style.transform = `translateX(-${n * 100}%)`;
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === n);
+        });
+        currentSlide = n;
+    }
+
+    // setInterval(() => {
+    //     currentSlide = (currentSlide + 1) % slides.length;
+    //     goToSlide(currentSlide);
+    // }, 5000);
+
+
+    const carouselTestimonials = document.querySelector('.carousel-testimonials');
+    const slidesTestimonials = document.querySelectorAll('.carousel-testimonials-slide');
+    const dotsTestimonialContainer = document.querySelector('.carousel-testimonials-indicators');
+    let currentSlideT = 0;
+
+    console.log(carouselTestimonials)
+    console.log(slidesTestimonials)
+    console.log(dotsTestimonialContainer)
+
+    // Create dots
+    slidesTestimonials.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlideT(index));
+        dotsTestimonialContainer.appendChild(dot);
+    });
+
+    function goToSlideT(n) {
+        carouselTestimonials.style.transform = `translateX(-${n * 100}%)`;
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === n);
+        });
+        currentSlideT = n;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const profile = document.querySelector('.profile');
     const dropdown = document.querySelector('.dropdown__wrapper');
 
@@ -153,24 +231,24 @@ document.addEventListener('DOMContentLoaded', function () {
         const loginButton = document.getElementById('loginButton');
         const logoutButton = document.getElementById('logoutButton');
         const optionsBox = document.getElementById('optionsBox'); 
-        const allPackages = document.getElementById('allPackages');
+        /* const allPackages = document.getElementById('allPackages'); */
         const adminOptions = document.getElementById('adminOptions');
 
         if (isLoggedIn && isLoggedIn.split('=')[1] === 'true') {
             // Usuario autenticado
             if (userProfile) userProfile.style.display = 'block';
             if (loginButton) loginButton.style.display = 'none';
-            if (logoutButton) logoutButton.style.display = 'block';
+            if (logoutButton) logoutButton.style.display = 'flex';
 
             // Mostrar opciones básicas (Todos los paquetes)
             if (optionsBox) optionsBox.style.display = 'block'; 
-            if (allPackages) {
+            /* if (allPackages) {
                 allPackages.style.display = 'block';
-            }
+            } */
 
             // Mostrar opciones de admin solo si el correo contiene "admin"
             if (userEmail && userEmail.split('=')[1].includes('admin')) {
-                if (adminOptions) adminOptions.style.display = 'block';
+                if (adminOptions) adminOptions.style.display = 'flex';
             } else {
                 if (adminOptions) adminOptions.style.display = 'none';
             }
@@ -180,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (loginButton) loginButton.style.display = 'block';
             if (logoutButton) logoutButton.style.display = 'none';
             if (optionsBox) optionsBox.style.display = 'none';
-            if (allPackages) allPackages.style.display = 'none';
+            /* if (allPackages) allPackages.style.display = 'none'; */
             if (adminOptions) adminOptions.style.display = 'none';
         }
     }

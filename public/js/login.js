@@ -23,17 +23,21 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         });
 
         const data = await response.json();
+        console.log('Datos recibidos del backend:', data);
 
         if (response.ok) {
             alert('Inicio de sesión exitoso');
-            localStorage.setItem('role', data.role); // Guardar el rol del usuario
-            localStorage.setItem('user', JSON.stringify(data.username)); // Guardar el nombre del usuario
+            localStorage.setItem('role', data.user.role); // Guardar el rol del usuario
             // Redirigir según el rol
-            if (data.role === 'admin') {
+            /* if (data.user.role === 'admin') {
                 window.location.href = '/admin-dashboard.html';
+                console.log('Admin:', data);
             } else {
-                window.location.href = '/user-dashboard.html';
-            }
+                window.location.href = '/';
+                console.log('No Admin:', data);
+            } */
+            window.location.href = '/';
+
         } else {
             alert(`Error: ${data.error || 'Inicio de sesión fallido'}`);
         }

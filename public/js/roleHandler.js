@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const role = localStorage.getItem('role');
     const adminOptions = document.getElementById('adminOptions');
-    const allPackages = document.getElementById('allPackages');
+    /* const allPackages = document.getElementById('allPackages'); */
     const loginButton = document.getElementById('loginButton');
     const logoutButton = document.getElementById('logoutButton');
     const userProfile = document.getElementById('userProfile');
     const optionsBox = document.getElementById('optionsBox'); // Contenedor de opciones
 
     if (role) {
-        allPackages.style.display = 'block';
+        /* allPackages.style.display = 'block'; */
         loginButton.style.display = 'none';
         userProfile.style.display = 'block';
-        logoutButton.style.display = 'block';
+        logoutButton.style.display = 'flex';
 
         if (role === 'admin') {
-            adminOptions.style.display = 'block';
+            adminOptions.style.display = 'flex';
 
             // Agregar evento para acceder a /edit-packages
             const editPackagesLink = document.createElement('a');

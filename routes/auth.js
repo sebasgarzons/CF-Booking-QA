@@ -43,38 +43,36 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).send("Email y contraseña son requeridos");
+      return res.status(400).json({ error: 'Email y contraseña son requeridos' });
   }
 
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).send("Usuario no encontrado");
-    }
+      const user = await User.findOne({ email });
+      if (!user) {
+          return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).send("Contraseña incorrecta");
-    }
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+          return res.status(401).json({ error: 'Contraseña incorrecta' });
+      }
 
-    
-    console.log("Antes de configurar sesión:", req.session);
-    req.session.user = {
-      id: user._id,
-      username: user.username,
-      role: user.role, 
-    };
-    console.log("Después de configurar sesión:", req.session);
+      // Aquí se configura la sesión
+      req.session.user = {
+          id: user._id,
+          email: user.email,
+          role: user.role // Asegúrate de incluir el role aquí
+      };
 
-    
-    res.status(200).json({
-      message: "Inicio de sesión exitoso",
-      role: user.role,
-      username: user.username,
-    });
+      console.log("Usuario autenticado:", req.session.user);
+
+      res.status(200).json({
+          message: 'Inicio de sesión exitoso',
+          user: req.session.user // Opcional, para verificar en Postman
+      });
   } catch (err) {
-    console.error("Error al iniciar sesión:", err);
-    res.status(500).send("Error del servidor");
+      console.error('Error al iniciar sesión:', err);
+      res.status(500).json({ error: 'Error del servidor' });
   }
 });
 
