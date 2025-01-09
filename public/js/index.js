@@ -23,7 +23,7 @@ export async function renderCart() {
     if (authStatus.authenticated) {
         try {
             // Usuario autenticado: obtener carrito del backend
-            const response = await fetch('http://localhost:3000/carrito/', {
+            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
                 credentials: 'include',
             });
 
@@ -82,7 +82,7 @@ if (createPackageForm) {
         const packageData = Object.fromEntries(formData.entries()); // Convierte FormData a un objeto
 
         try {
-            const response = await fetch('http://localhost:3000/packages/add', {
+            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/packages/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(packageData),

@@ -232,7 +232,7 @@ document.querySelectorAll('.add-to-cart-btn-front').forEach(button => {
         const authStatus = await isAuthenticated();
         if (authStatus.authenticated) {
             // Usuario autenticado: enviar al backend
-            fetch('http://localhost:3000/carrito/add', {
+            fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -264,7 +264,7 @@ document.getElementById('carousel-dots-container').addEventListener('click', asy
             if (authStatus.authenticated) {
                 console.log('Usuario autenticado. Enviando al backend...');
                 // Usuario autenticado: enviar al backend
-                const response = await fetch('http://localhost:3000/carrito/add', {
+                const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/add', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
@@ -378,7 +378,7 @@ document.getElementById('filter-button').addEventListener('click', async () => {
     if (fechaFin) queryParams.append('fechaFin', fechaFin);
 
     try {
-        const response = await fetch(`http://localhost:3000/packages/filter?${queryParams.toString()}`);
+        const response = await fetch(`http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/packages/filter?${queryParams.toString()}`);
         const data = await response.json();
 
         if (response.ok) {

@@ -27,8 +27,8 @@ app.use(
 
 app.use(
   cors({
-    /* origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/", */
-    origin: "http://localhost:5173",
+    origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/",
+    /* origin: "http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:5173", */
     credentials: true,
   })
 );
@@ -54,9 +54,9 @@ app.use((req, res, next) => {
   .then(() => console.log('Conexión exitosa a MongoDB'))
   .catch(err => console.error('Error al conectar a MongoDB:', err)); */
 
-  console.log("Intentando conectar a:", "mongodb://localhost:27017/agencia");
+  console.log("Intentando conectar a:", "mongodb://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:27017/agencia");
   mongoose
-    .connect("mongodb://localhost:27017/agencia", {
+    .connect("mongodb://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:27017/agencia", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -141,5 +141,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor escuchando en http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:${PORT}`);
 });

@@ -66,7 +66,7 @@ export async function syncCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length > 0) {
         try {
-            const response = await fetch('http://localhost:3000/carrito/sync', {
+            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/sync', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export async function updateCartCount() {
 
         if (authStatus.authenticated) {
             // Usuario autenticado: Obtener carrito desde el backend
-            const response = await fetch('http://localhost:3000/carrito/', {
+            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
                 credentials: 'include',
             });
 
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const authStatus = await isAuthenticated();
             if (authStatus.authenticated) {
                 // Si el usuario está autenticado, consulta el carrito desde el backend
-                const response = await fetch('http://localhost:3000/carrito/', {
+                const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
                     credentials: 'include',
                 });
                 const data = await response.json();
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const authStatus = await isAuthenticated();
                 if (authStatus.authenticated) {
                     // Eliminar del backend
-                    await fetch(`http://localhost:3000/carrito/remove/${packageId}`, {
+                    await fetch(`http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/remove/${packageId}`, {
                         method: 'DELETE',
                         credentials: 'include',
                     });

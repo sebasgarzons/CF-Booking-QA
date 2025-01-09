@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch('http://localhost:3000/packages/')
+    fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/packages/')
         .then(response => response.json())
         .then(data => {
 
