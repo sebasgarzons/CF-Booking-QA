@@ -1,15 +1,19 @@
 require('dotenv').config();
 
-
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
+
 const authRoutes = require("../routes/auth");
+const packageRoutes = require('../routes/packages.routes');
+const carritoRoutes = require('../routes/carrito.routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 
 app.use(
@@ -21,15 +25,21 @@ app.use(
   })
 );
 
-
 app.use(
   cors({
-    origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/",
+    /* origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/", */
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/packages', packageRoutes);
+
+
+
 
 
 
@@ -40,17 +50,18 @@ app.use((req, res, next) => {
 });
 
 // Conexión a MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+/* mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Conexión exitosa a MongoDB'))
-  .catch(err => console.error('Error al conectar a MongoDB:', err));
+  .catch(err => console.error('Error al conectar a MongoDB:', err)); */
 
-// mongoose
-//   .connect("mongodb://localhost:27017/agencia", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("Conexión exitosa a MongoDB"))
-//   .catch((err) => console.error("Error al conectar a MongoDB:", err));
+  console.log("Intentando conectar a:", "mongodb://localhost:27017/agencia");
+  mongoose
+    .connect("mongodb://localhost:27017/agencia", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => console.log("Conexión exitosa a MongoDB"))
+    .catch((err) => console.error("Error al conectar a MongoDB:", err));
 
 mongoose.connection.on(
   "error",
@@ -107,6 +118,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", authRoutes);
 
 
+
+// Conectar las rutas del carrito
+app.use('/carrito', carritoRoutes);
+
 app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
 });
@@ -114,8 +129,15 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   console.error("Error no manejado:", err);
-  res.status(500).json({ error: "Ocurrió un error interno en el servidor" });
+  res.status(500).json({
+    error: "Ocurrió un error interno en el servidor",
+    message: err.message, // Detalle del error
+    stack: err.stack // Traza del error
+  });
 });
+
+
+
 
 
 app.listen(PORT, () => {

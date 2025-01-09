@@ -158,7 +158,12 @@ p.text{
     border: 1px solid var(--primary);
 } */
 
-
+header{
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    top: 0;
+}
 
 #nav_desktop{
     background-color: #232e2e;
@@ -172,6 +177,15 @@ p.text{
     justify-content: space-between;
     display: flex;
     align-items: center;
+}
+
+.center_content{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.center_content main{
+    min-height: 60vh;
 }
 
 .dropdown__wrapper {
@@ -220,6 +234,24 @@ p.text{
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+#cart-container{
+    background-color: red;
+    width: 100%;
+    height: 30vw;
+    display: none;
+}
+
+#cart-table{
+    width: 100%;
+    max-width: 800px;
+    margin: 4rem auto 0;
+}
+
+#cart-table tbody tr{
+    padding: 2rem;
+    border: 1px solid white;
 }
 
 #nav_desktop .divider {
@@ -312,6 +344,29 @@ nav > ul > li:hover > svg {
 
 .profile{
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(146deg) brightness(116%) contrast(104%);
+}
+
+.cart_anchor{
+    position: relative;
+}
+
+.cart_anchor span{
+    position: absolute;
+    top: 0px;
+    left: -1rem;
+    background-color: red;
+    border-radius: 100vmin;
+    height: 20px;
+    width: 20px;
+    z-index: 2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_cart{
+    z-index: 3;
 }
 
 .hamburguer-profile-nav{
@@ -604,12 +659,19 @@ nav > ul > li:hover > svg {
     justify-content: space-between;
     border: 0.5px inset var(--primary);
     padding: 1rem;
+    width: max-content;
 }
 
 #filter > div > img{
     object-fit: contain;
     width: auto;
     height: 1rem;
+}
+
+#filter input{
+    background-color: var(--background);
+    color: white;
+    max-width: max-content;
 }
 
 #filter .box_filter{
@@ -765,7 +827,7 @@ nav > ul > li:hover > svg {
 .carousel-dots-item#carousel-dots-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 1rem;
+    gap: 1rem;
 }
 
 .carousel-dots-item img {
@@ -1124,6 +1186,7 @@ position: relative;
     top: 15%;
     transform: translate(0%, -100%);
     z-index: 8;
+    display: none;
 }
 
 .modal_window button.close_modal svg{

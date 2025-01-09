@@ -2,6 +2,7 @@ const path = require('path');
 const { Router } = require('express');
 const router = Router();
 const packagesCtrl = require('../controllers/packages.controllers');
+const Package = require('../models/package');
 
 // Middleware para verificar permisos de administrador
 const isAdmin = (req, res, next) => {
@@ -57,6 +58,43 @@ router.post('/add', isAuthenticated, isAdmin, packagesCtrl.createNewPackage);
 
 // Eliminar un paquete
 router.post('/delete/:id', isAuthenticated, isAdmin, packagesCtrl.deletePackage);
+
+router.get('/filter', async (req, res) => {
+    try {
+        const { numeroPersonas, precioMin, precioMax, fechaInicio, fechaFin } = req.query;
+
+        const filters = {};
+
+        // Filtro por número de personas
+        if (numeroPersonas) {
+            filters.numeroPersonas = parseInt(numeroPersonas, 10); // Convierte a número
+        }
+
+        // Filtro por rango de precios
+        if (precioMin || precioMax) {
+            filters.precio = {};
+            if (precioMin) filters.precio.$gte = Number(precioMin);
+            if (precioMax) filters.precio.$lte = Number(precioMax);
+        }
+
+        // Filtro por rango de fechas
+        if (fechaInicio || fechaFin) {
+            filters.fechaIda = {};
+            if (fechaInicio) filters.fechaIda.$gte = new Date(fechaInicio);
+            if (fechaFin) filters.fechaIda.$lte = new Date(fechaFin);
+        }
+
+        console.log("Filtros aplicados:", filters); // Para depuración
+
+        const packages = await Package.find(filters).lean();
+
+        console.log("Resultados encontrados:", packages.length);
+        res.status(200).json({ packages });
+    } catch (error) {
+        console.error("Error al filtrar paquetes:", error);
+        res.status(500).json({ error: "No se pudo realizar el filtro." });
+    }
+});
 
 module.exports = router;
 

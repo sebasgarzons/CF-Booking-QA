@@ -13,8 +13,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;1000&family=Roboto:wght@400;700&display=swap"
     rel="stylesheet">
-  <script src="/js/frontend.js" defer></script>
+  <script type="module" src="/js/frontend.js" defer></script>
   <script src="/js/packages.js" defer></script>
+  <script type="module" src="/js/carrito.js" defer></script>
+  <script type="module" src="/js/index.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -43,8 +45,8 @@
           <!-- Botón de Iniciar Sesión -->
           <a href="/login.html" class="f_button" id="loginButton">Iniciar Sesión</a>
           <div class="flex items-center gap-2">
-            <img src="/img/cart-icon.png" />
-            <a href="/cart">Carro</a>
+            <img src="/img/cart-icon.png" class="logo_cart" />
+            <a href="/cart" class="cart_anchor"><span>0</span>Carro</a>
           </div>
         </div>
 
@@ -55,7 +57,7 @@
                 <a href="/all-packages">Todos los paquetes</a>
               </li> -->
               <li id="adminOptions" style="display: block;">
-                <a href="/edit-packages" id="editPackagesLink">Añadir paquetes!</a>
+                <a href="/new-tour-details" id="editPackagesLink">Añadir paquetes!</a>
               </li>
             </ul>
             <hr class="divider">
@@ -323,28 +325,33 @@
           <!-- FILTRO DE BUSQUEDA -->
           <aside id="filter" class="cont_margin_page">
             <div class="flex items-center justify-between">
-              <div class="flex items-center box_filter">
-                <img src="/img/location-add.png" />
-                <p>Destino</p>
-              </div>
-
+                <div class="flex items-center box_filter">
+                    <label for="numero-personas">Personas:</label>
+                    <input type="number" id="numero-personas" placeholder="Número de personas" />
+                </div>
             </div>
             <div class="flex items-center justify-between">
-              <div class="flex items-center box_filter">
-                <img src="/img/calendar-edit.png" />
-                <p>Mes</p>
-              </div>
-              <img src="/img/arrow-down.png" />
+                <div class="flex items-center box_filter">
+                    <label for="precio-min">Precio Min:</label>
+                    <input type="number" id="precio-min" placeholder="Precio mínimo" />
+                </div>
+                <div class="flex items-center box_filter">
+                    <label for="precio-max">Precio Max:</label>
+                    <input type="number" id="precio-max" placeholder="Precio máximo" />
+                </div>
             </div>
             <div class="flex items-center justify-between">
-              <div class="flex items-center box_filter ">
-                <img src="/img/travelling_1.png" />
-                <p>Huéspedes</p>
-              </div>
-              <img src="/img/arrow-down.png" />
+                <div class="flex items-center box_filter">
+                    <label for="fecha-inicio">Fecha Desde:</label>
+                    <input type="date" id="fecha-inicio" />
+                </div>
+                <div class="flex items-center box_filter">
+                    <label for="fecha-fin">Fecha Hasta:</label>
+                    <input type="date" id="fecha-fin" />
+                </div>
             </div>
-            <button class="f_button h-full">BUSCAR</button>
-          </aside>
+            <button class="f_button h-full" id="filter-button">BUSCAR</button>
+        </aside>
 
           <!-- BOTONES LINDOS -->
           <!-- <div class="buttons_carrousel_search flex items-center gap-8">
@@ -657,6 +664,7 @@
       </div>
     </aside>
   </footer>
+  <div id="cart-container"></div>
 
   <!-- Contact modal -->
   <div id="modal_reservation"

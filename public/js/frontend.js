@@ -1,3 +1,8 @@
+import { isAuthenticated } from './login.js';
+import { renderCartLocal } from './carrito.js';
+import { renderCart } from './index.js';
+import { updateCartCount } from './carrito.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     function showModal(id_modal) {
         $("div[modal-backdrop]").remove();
@@ -219,6 +224,84 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+document.querySelectorAll('.add-to-cart-btn-front').forEach(button => {
+    button.addEventListener('click', async (e) => {
+        const packageId = e.target.dataset.packageId;
+
+        const authStatus = await isAuthenticated();
+        if (authStatus.authenticated) {
+            // Usuario autenticado: enviar al backend
+            fetch('http://localhost:3000/carrito/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ packageId }),
+            })
+            .then(response => response.json())
+            .then(data => console.log("Paquete agregado al carrito (backend):", data))
+            .catch(err => console.error("Error al agregar al carrito (backend):", err));
+        } else {
+            // Usuario no autenticado: usar localStorage
+            addToCartLocal(packageId);
+            renderCartLocal();
+        }
+    });
+});
+
+document.getElementById('carousel-dots-container').addEventListener('click', async (e) => {
+    if (e.target.classList.contains('add-to-cart-btn')) {
+        const packageId = e.target.dataset.packageId;
+
+        if (!packageId) {
+            console.error('ID del paquete no encontrado en el botón.');
+            return;
+        }
+
+        try {
+            const authStatus = await isAuthenticated();
+
+            if (authStatus.authenticated) {
+                console.log('Usuario autenticado. Enviando al backend...');
+                // Usuario autenticado: enviar al backend
+                const response = await fetch('http://localhost:3000/carrito/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ packageId }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Carrito del backend actualizado:', data.carrito);
+                    await renderCart(); // Actualizar el carrito renderizado
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error al agregar al carrito (backend):', errorData);
+                    alert(`Error al agregar al carrito: ${errorData.error || 'Error desconocido'}`);
+                }
+            } else {
+                console.log('Usuario no autenticado. Usando localStorage...');
+                // Usuario no autenticado: usar localStorage
+                addToCartLocal(packageId);
+                renderCartLocal(); // Actualiza el carrito renderizado
+            }
+            updateCartCount();
+        } catch (err) {
+            console.error('Error al manejar el evento de carrito:', err);
+        }
+    }
+});
+
+document.addEventListener('click', (e) => {
+    
+    if (e.target.classList.contains('remove-from-cart-btn')) {
+        const packageId = e.target.dataset.packageId;
+        removeFromCartLocal(packageId); // Elimina del carrito localStorage
+        renderCartLocal(); // Actualiza la vista del carrito
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // Función para verificar si el usuario está autenticado y es admin
     function checkLoginStatus() {
@@ -275,5 +358,63 @@ document.addEventListener('DOMContentLoaded', function () {
             checkLoginStatus();
         });
     }
+
+    updateCartCount();
 });
 
+document.getElementById('filter-button').addEventListener('click', async () => {
+    const numeroPersonas = document.getElementById('numero-personas').value;
+    const precioMin = document.getElementById('precio-min').value;
+    const precioMax = document.getElementById('precio-max').value;
+    const fechaInicio = document.getElementById('fecha-inicio').value;
+    const fechaFin = document.getElementById('fecha-fin').value;
+
+    const queryParams = new URLSearchParams();
+
+    if (numeroPersonas) queryParams.append('numeroPersonas', numeroPersonas);
+    if (precioMin) queryParams.append('precioMin', precioMin);
+    if (precioMax) queryParams.append('precioMax', precioMax);
+    if (fechaInicio) queryParams.append('fechaInicio', fechaInicio);
+    if (fechaFin) queryParams.append('fechaFin', fechaFin);
+
+    try {
+        const response = await fetch(`http://localhost:3000/packages/filter?${queryParams.toString()}`);
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log('Filtered Packages:', data.packages);
+
+            // Renderizar paquetes filtrados
+            const container = document.getElementById('carousel-dots-container');
+            container.innerHTML = ''; // Limpia el contenido previo
+            data.packages.forEach(pkg => {
+                const packageDiv = document.createElement('div');
+                packageDiv.innerHTML = `
+                <div class="relative">
+                    <img src="./assets/img/${pkg.imagen}" />
+                </div>
+                <div class="description-dots">
+                    <div class="flex items-center justify-between">
+                        <h4>${pkg.hotel}</h4>
+                    </div>
+
+                    <ul class="info-list">
+                        <li class="info-item"><i class='bx bxs-plane-alt'></i>${pkg.numeroPersonas} personas</li>
+                        <li class="info-item"><i class='bx bx-cycling'></i>${pkg.actividadRecreativa}</li>
+                    </ul>
+                    <div class="item-price">
+                        <p class="item-date">${new Date(pkg.fechaIda).toLocaleDateString()} - ${new Date(pkg.fechaSalida).toLocaleDateString()}</p>
+                        <h5>${pkg.precio}</h5>
+                    </div>
+                    <button class="s_button add-to-cart-btn" data-package-id="${pkg._id}">Reservar &mdash;></button>
+                </div>
+                `;
+                container.appendChild(packageDiv);
+            });
+        } else {
+            console.error('Error al filtrar:', data.error);
+        }
+    } catch (err) {
+        console.error('Error al realizar el filtro:', err);
+    }
+});
