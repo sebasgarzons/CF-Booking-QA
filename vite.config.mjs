@@ -36,7 +36,7 @@ export default defineConfig({
     },
     historyApiFallback: true, 
     proxy: {
-      "/api": "http://localhost:3000", 
+      "/api": "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/", 
     },
   },
 });

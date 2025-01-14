@@ -1,7 +1,7 @@
 import { syncCart } from './carrito.js';
 
 export async function isAuthenticated() {
-    const response = await fetch('http://localhost:3000/auth-status', {
+    const response = await fetch('https://polar-mountain-17270-cc22e4a69974.herokuapp.com/auth-status', {
         credentials: 'include',
     });
     const data = await response.json();
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/login', {
+                const response = await fetch('https://polar-mountain-17270-cc22e4a69974.herokuapp.com/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
