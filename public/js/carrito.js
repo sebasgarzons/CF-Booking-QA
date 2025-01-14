@@ -1,4 +1,4 @@
-import { isAuthenticated } from "./login";
+import { isAuthenticated } from "./login.js";
 
 // Obtener el carrito desde localStorage
 export function getCartFromLocalStorage() {

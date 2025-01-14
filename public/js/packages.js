@@ -1,4 +1,4 @@
-import { updateCartCount } from "./carrito";
+import { updateCartCount } from "./carrito.js";
 
 
 // Realizar una solicitud al endpoint público

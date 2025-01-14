@@ -12,8 +12,6 @@ const carritoRoutes = require('./routes/carrito.routes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-
 app.use(
   session({
     secret: "clave_secreta",
@@ -44,20 +42,16 @@ app.use((req, res, next) => {
 });
 
 // Conexión a MongoDB
-if (process.env.NODE_ENV === "production") {
-  mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(() => console.log('Conexión exitosa a MongoDB (Producción)'))
-    .catch(err => console.error('Error al conectar a MongoDB:', err));
-} else {
-  mongoose
-    .connect("mongodb://https://polar-mountain-17270-cc22e4a69974.herokuapp.com/agencia", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log("Conexión exitosa a MongoDB (Local)"))
-    .catch((err) => console.error("Error al conectar a MongoDB:", err));
+if(!process.env.MONGODB_URI){
+  throw new Error("MONGODB_URI no está definido en las variables de entorno. Define la variable de entorno en .env");
 }
+mongoose
+  .connect(process.env.MONGODB_URI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Conexión exitosa a MongoDB (Producción)'))
+  .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 mongoose.connection.on(
   "error",
