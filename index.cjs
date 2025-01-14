@@ -6,8 +6,8 @@ const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
-const packageRoutes = require('../routes/packages.routes');
-const carritoRoutes = require('../routes/carrito.routes');
+const packageRoutes = require('./routes/packages.routes');
+const carritoRoutes = require('./routes/carrito.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
