@@ -47,16 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         console.error("Usuario no autenticado.");
                     }
-                    // Redirigir según el rol
-                    /* if (data.user.role === 'admin') {
-                        window.location.href = '/admin-dashboard.html';
-                        console.log('Admin:', data);
-                    } else {
-                        window.location.href = '/';
-                        console.log('No Admin:', data);
-                    } */
+
                     window.location.href = '/';
-        
+
                 } else {
                     alert(`Error: ${data.error || 'Inicio de sesión fallido'}`);
                 }
