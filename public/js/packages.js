@@ -1,3 +1,5 @@
+import { updateCartCount } from "./carrito";
+
 
 // Realizar una solicitud al endpoint público
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/packages/')
+    fetch('http://localhost:3000/packages/')
         .then(response => response.json())
         .then(data => {
 

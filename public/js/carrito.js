@@ -66,7 +66,7 @@ export async function syncCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length > 0) {
         try {
-            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/sync', {
+            const response = await fetch('http://localhost:3000/carrito/sync', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export async function updateCartCount() {
 
         if (authStatus.authenticated) {
             // Usuario autenticado: Obtener carrito desde el backend
-            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
+            const response = await fetch('http://localhost:3000/carrito/', {
                 credentials: 'include',
             });
 
@@ -125,15 +125,22 @@ export async function updateCartCount() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     updateCartCount();
-    const tableBody = document.querySelector('#cart-table tbody');
+
+    const table = document.querySelector('#cart-table'); // Verificar si el elemento existe
+    const tableBody = table ? table.querySelector('tbody') : null;
     const emptyCartMessage = document.getElementById('empty-cart-message');
+
+    if (!table || !tableBody) {
+        console.log('No se encontró el elemento #cart-table. Deteniendo renderCart.');
+        return;
+    }
 
     async function fetchCart() {
         try {
             const authStatus = await isAuthenticated();
             if (authStatus.authenticated) {
                 // Si el usuario está autenticado, consulta el carrito desde el backend
-                const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
+                const response = await fetch('http://localhost:3000/carrito/', {
                     credentials: 'include',
                 });
                 const data = await response.json();
@@ -148,8 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-
-    async function renderCart() {
+    async function renderCartFormTable() {
         const cart = await fetchCart();
 
         if (cart.length === 0) {
@@ -163,47 +169,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         console.log("Datos del carrito:", cart);
 
-
         cart.forEach(pkg => {
             const row = document.createElement('tr');
+
+            const packageId = pkg._id || pkg;
+
+
             row.innerHTML = `
                 <td>${pkg.pais || 'N/A'}</td>
                 <td>${pkg.hotel || 'N/A'}</td>
                 <td>$${pkg.precio || '0'}</td>
-                <td>${new Date(pkg.fechaIda).toLocaleDateString()}</td>
-                <td>${new Date(pkg.fechaSalida).toLocaleDateString()}</td>
+                <td>${pkg.fechaIda ? new Date(pkg.fechaIda).toLocaleDateString() : 'N/A'}</td>
+                <td>${pkg.fechaSalida ? new Date(pkg.fechaSalida).toLocaleDateString() : 'N/A'}</td>
                 <td>
-                    <button class="remove-from-cart-btn" data-package-id="${pkg._id || pkg}">Eliminar</button>
+                    <button class="remove-from-cart-btn" data-package-id="${packageId}"><img src="./img/recycle-bin.png" /></button>
                 </td>
             `;
+            console.log("Botón generado con ID:", packageId);
             tableBody.appendChild(row);
         });
 
         // Agregar funcionalidad de eliminar
         document.querySelectorAll('.remove-from-cart-btn').forEach(button => {
             button.addEventListener('click', async (e) => {
-                const packageId = e.target.dataset.packageId;
-
+                const packageId = e.target.closest('.remove-from-cart-btn').dataset.packageId;
+                console.log("ID del paquete para eliminar:", packageId);
+        
                 const authStatus = await isAuthenticated();
                 if (authStatus.authenticated) {
-                    // Eliminar del backend
-                    await fetch(`http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/remove/${packageId}`, {
+                    await fetch(`http://localhost:3000/carrito/remove/${packageId}`, {
                         method: 'DELETE',
                         credentials: 'include',
                     });
                 } else {
-                    // Eliminar del localStorage
                     removeFromCartLocal(packageId);
                 }
-
-                // Volver a renderizar el carrito
-                renderCart();
+        
+                renderCartFormTable();
             });
-            updateCartCount();
         });
+
+        updateCartCount();
     }
 
-    renderCart();
+    renderCartFormTable();
 });
 
 

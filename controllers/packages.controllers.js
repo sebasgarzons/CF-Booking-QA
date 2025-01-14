@@ -17,6 +17,11 @@ packagesCtrl.renderPackageForm = (req, res) => {
     }
 }; */
 packagesCtrl.createNewPackage = async (req, res) => {
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ error: "El cuerpo de la solicitud está vacío." });
+    }
+
     const { pais, hotel, precio, numeroPersonas, fechaIda, fechaSalida, actividadRecreativa, imagen } = req.body;
     try {
         const newPackage = new Package({
@@ -35,6 +40,7 @@ packagesCtrl.createNewPackage = async (req, res) => {
         console.error('Error al crear paquete:', error);
         res.status(500).json({ error: 'Hubo un problema al guardar el paquete.', details: error.message });
     }
+
 };
 
 // Renderizar todos los paquetes

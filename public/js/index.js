@@ -18,12 +18,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 export async function renderCart() {
+    const cartContainer = document.getElementById('cart-container');
+
+    // Verificar si el contenedor existe
+    if (!cartContainer) {
+        console.log('El contenedor del carrito no existe en esta página.');
+        return;
+    }
+
     const authStatus = await isAuthenticated();
 
     if (authStatus.authenticated) {
         try {
             // Usuario autenticado: obtener carrito del backend
-            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/carrito/', {
+            const response = await fetch('http://localhost:3000/carrito/', {
                 credentials: 'include',
             });
 
@@ -39,7 +47,6 @@ export async function renderCart() {
                 return;
             }
 
-            const cartContainer = document.getElementById('cart-container');
             cartContainer.innerHTML = ''; // Limpia el contenedor
 
             data.carrito.forEach(pkg => {
@@ -82,7 +89,7 @@ if (createPackageForm) {
         const packageData = Object.fromEntries(formData.entries()); // Convierte FormData a un objeto
 
         try {
-            const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/packages/add', {
+            const response = await fetch('http://localhost:3000/packages/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(packageData),

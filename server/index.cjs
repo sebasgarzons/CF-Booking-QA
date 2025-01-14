@@ -5,11 +5,9 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
-
 const authRoutes = require("../routes/auth");
 const packageRoutes = require('../routes/packages.routes');
 const carritoRoutes = require('../routes/carrito.routes');
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,24 +23,20 @@ app.use(
   })
 );
 
+// Ajustar CORS para entorno local
 app.use(
   cors({
-    origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com/",
-    /* origin: "http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:5173", */
-    credentials: true,
+      origin: "https://polar-mountain-17270-cc22e4a69974.herokuapp.com", // Permite solicitudes desde el frontend
+      credentials: true, // Permite cookies y encabezados de autorización
   })
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/packages', packageRoutes);
 
-
-
-
-
-
+app.use('/packages', packageRoutes); //
+app.use('/carrito', carritoRoutes); //
 
 app.use((req, res, next) => {
   console.log(`Solicitud recibida: ${req.method} ${req.url}`);
@@ -50,18 +44,20 @@ app.use((req, res, next) => {
 });
 
 // Conexión a MongoDB
-/* mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Conexión exitosa a MongoDB'))
-  .catch(err => console.error('Error al conectar a MongoDB:', err)); */
-
-  console.log("Intentando conectar a:", "mongodb://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:27017/agencia");
+if (process.env.NODE_ENV === "production") {
   mongoose
-    .connect("mongodb://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:27017/agencia", {
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log('Conexión exitosa a MongoDB (Producción)'))
+    .catch(err => console.error('Error al conectar a MongoDB:', err));
+} else {
+  mongoose
+    .connect("mongodb://localhost:27017/agencia", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log("Conexión exitosa a MongoDB"))
+    .then(() => console.log("Conexión exitosa a MongoDB (Local)"))
     .catch((err) => console.error("Error al conectar a MongoDB:", err));
+}
 
 mongoose.connection.on(
   "error",
@@ -70,7 +66,6 @@ mongoose.connection.on(
 mongoose.connection.once("open", () => {
   console.log("Conexión exitosa con MongoDB");
 });
-
 
 const verifyAdmin = (req, res, next) => {
   console.log("Sesión actual:", req.session);
@@ -86,7 +81,6 @@ const verifyAdmin = (req, res, next) => {
   next();
 };
 
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -98,7 +92,6 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
-
 
 app.get("/all-packages", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "all-packages.html"));
@@ -114,32 +107,17 @@ app.get("/edit-packages", verifyAdmin, (req, res) => {
 
 app.use(express.static(path.join(__dirname, "public")));
 
-
 app.use("/", authRoutes);
-
-
-
-// Conectar las rutas del carrito
-app.use('/carrito', carritoRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
 });
 
-
 app.use((err, req, res, next) => {
   console.error("Error no manejado:", err);
-  res.status(500).json({
-    error: "Ocurrió un error interno en el servidor",
-    message: err.message, // Detalle del error
-    stack: err.stack // Traza del error
-  });
+  res.status(500).json({ error: "Ocurrió un error interno en el servidor" });
 });
 
-
-
-
-
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:${PORT}`);
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });

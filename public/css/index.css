@@ -244,14 +244,41 @@ header{
 }
 
 #cart-table{
-    width: 100%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
     margin: 4rem auto 0;
+}
+
+#cart-table thead tr th{
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 #cart-table tbody tr{
     padding: 2rem;
     border: 1px solid white;
+    border-left: none;
+    border-right: none;
+}
+
+#cart-table tbody tr:first-child{
+    border-top: none;
+}
+
+#cart-table tbody tr:last-child{
+    border-bottom: none;
+}
+
+#cart-table tbody tr td:nth-child(3), #cart-table tbody tr td:nth-child(4), #cart-table tbody tr td:nth-child(5), #cart-table tbody tr td:nth-child(6){
+    text-align: center;
+}
+
+.remove-from-cart-btn img{
+    object-fit: contain;
+    width: auto;
+    height: 1.5rem;
+    cursor: pointer;
+    filter: invert(100%) sepia(62%) saturate(0%) hue-rotate(6deg) brightness(115%) contrast(100%);
 }
 
 #nav_desktop .divider {

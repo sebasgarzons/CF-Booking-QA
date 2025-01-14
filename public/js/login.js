@@ -1,30 +1,14 @@
 import { syncCart } from './carrito.js';
 
 export async function isAuthenticated() {
-    try {
-        // Enviamos la solicitud POST al backend
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-            credentials: 'include',
-        });
-
-        if (!response.ok) {
-            return { authenticated: false, user: null };
-        }
-
-        const data = await response.json();
-        return {
-            authenticated: data.authenticated,
-            user: data.user || null, // Información del usuario si está autenticado
-        };
-    } catch (error) {
-        console.error('Error al verificar autenticación:', error);
-        return { authenticated: false, user: null };
-    }
+    const response = await fetch('http://localhost:3000/auth-status', {
+        credentials: 'include',
+    });
+    const data = await response.json();
+    return {
+        authenticated: data.authenticated,
+        user: data.user || null,
+    };
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch('http://https://polar-mountain-17270-cc22e4a69974.herokuapp.com:3000/login', {
+                const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

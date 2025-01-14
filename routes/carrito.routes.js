@@ -116,18 +116,19 @@ router.delete('/remove/:id', async (req, res) => {
     if (req.session && req.session.user) {
         try {
             const packageId = req.params.id;
+
             const user = await User.findById(req.session.user.id);
 
-            user.carrito = user.carrito.filter(pkgId => pkgId.toString() !== packageId);
+            user.carrito = user.carrito.filter(pkgId => !pkgId.equals(packageId));
+
             await user.save();
             return res.status(200).json({ message: "Paquete eliminado del carrito." });
         } catch (error) {
-            console.error("Error al eliminar el paquete del carrito:", error);
             return res.status(500).json({ error: "No se pudo eliminar el paquete del carrito." });
         }
     } else {
-        // Para no autenticados, el cliente gestionará la eliminación en localStorage
-        return res.status(200).json({ message: "Operación completada para usuarios no autenticados." });
+        console.log("No autenticado.");
+        return res.status(401).json({ error: "No estás autenticado. Inicia sesión primero." });
     }
 });
 
